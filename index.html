@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keyboard Collection</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: white;
+        }
+
+
+        /* =========================
+           COLOR
+        ========================= */
+
+        :root {
+            --red: #ff1f3d;
+            --red-dark: #8b0015;
+            --pink: #ff4d67;
+            --gray: #a0a0a0;
+            --dark: #0d0d0d;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            width: 100%;
+            padding: 25px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: fixed;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(10px);
+
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                var(--red)
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 7% 80px;
+
+            background:
+                radial-gradient(
+                    circle at 80% 40%,
+                    rgba(255, 0, 40, 0.25),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    120deg,
+                    #050505 45%,
+                    #180005
+                );
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .small-title {
+            color: var(--red);
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 8vw, 110px);
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #ff1f3d,
+                #8b0015
+            );
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 550px;
+            color: #aaa;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           HERO IMAGE
+        ========================= */
+
+        .hero-image {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 90%;
+            max-width: 700px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 0 50px rgba(255, 0, 40, 0.25);
+
+            transition: 0.4s;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.03);
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--red);
+            font-size: 13px;
+            letter-spacing: 4px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            margin-top: 15px;
+            color: #888;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           STORY
+        ========================= */
+
+        .story {
+            background: #080808;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* ⭐ STORY IMAGE — ปรับให้ใหญ่ขึ้น */
+
+        .story-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .story-image img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+
+            border-radius: 15px;
+
+            display: block;
+
+            object-fit: contain;
+        }
+
+
+        .story-text h3 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .story-text p {
+            color: #999;
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           COLLECTION
+        ========================= */
+
+        .collection {
+            background: #050505;
+        }
+
+        .keyboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .keyboard-card {
+            background: #0d0d0d;
+
+            border: 1px solid #222;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: 0.35s;
+        }
+
+        .keyboard-card:hover {
+            transform: translateY(-8px);
+
+            border-color: var(--red);
+
+            box-shadow:
+                0 10px 40px rgba(255,0,40,0.15);
+        }
+
+       
+
+        .keyboard-card img {
+            width: 100%;
+            height: 250px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .keyboard-info {
+            padding: 25px;
+        }
+
+        .keyboard-info span {
+            color: var(--red);
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .keyboard-info h3 {
+            margin: 10px 0;
+            font-size: 22px;
+        }
+
+        .keyboard-info p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background:
+                linear-gradient(
+                    135deg,
+                    #080808,
+                    #190006
+                );
+        }
+
+        .about-box {
+            max-width: 850px;
+        }
+
+        .about-box h2 {
+            font-size: 55px;
+            margin-bottom: 25px;
+        }
+
+        .about-box p {
+            color: #999;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 40px 7%;
+
+            border-top: 1px solid #222;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #666;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .hero-content,
+            .hero-image {
+                width: 100%;
+            }
+
+            .keyboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image img {
+                width: 75%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .keyboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .section-title h2 {
+                font-size: 38px;
+            }
+
+            .story-image img {
+                width: 85%;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        KEY.COLLECTION
+    </div>
+
+    <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#story">STORY</a></li>
+        <li><a href="#collection">COLLECTION</a></li>
+        <li><a href="#about">ABOUT</a></li>
+    </ul>
+
+</nav>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            KEYBOARD COLLECTION / 2026
+        </div>
+
+        <h1>
+            MY<br>
+            <span class="gradient-text">
+                KEYBOARD
+            </span>
+            <br>
+            COLLECTION
+        </h1>
+
+        <p>
+            Collection ของคีย์บอร์ดที่ชื่นชอบ
+            ตั้งแต่ดีไซน์ของตัว Keyboard,
+            Keycap, Switch และเสียงในการพิมพ์
+            แต่ละชิ้นมีเอกลักษณ์และเรื่องราวของตัวเอง
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section class="story" id="story">
+
+    <div class="section-title">
+
+        <span>01 / STORY</span>
+
+        <h2>
+            WHY KEYBOARD?
+        </h2>
+
+        <p>
+            Collection ที่อยากจะเก็บ
+            และเหตุผลที่เลือกเก็บคีย์บอร์ดเหล่านี้
+        </p>
+
+    </div>
+
+
+    <div class="story-grid">
+
+        <div class="story-image">
+
+
+            <img
+                src="/pic/1.webp"
+                alt="Keyboard Story"
+            >
+
+        </div>
+
+
+        <div class="story-text">
+
+            <h3>
+                MY SPACE 
+              
+            </h3>
+
+            <p>
+                เราเป็นคนที่ชอบเล่นเกมและสนุกกับการแต่งห้อง ชอบลองจัดโต๊ะ เปลี่ยนมุมต่าง ๆ <br>
+                และเลือกของที่เข้ากับสไตล์ของตัวเอง
+                จึงอยากถ่ายทอดความชอบเหล่านี้ออกมาเป็นเว็บไซต์ที่สะท้อนตัวตนของเรา
+                
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     COLLECTION
+========================= -->
+
+<section class="collection" id="collection">
+
+    <div class="section-title">
+
+        <span>02 / COLLECTION</span>
+
+        <h2>
+            MY KEYBOARDS
+        </h2>
+
+        <p>
+            รวม Keyboard ที่อยากได้ใน Collection
+            พร้อมรายละเอียดของแต่ละชิ้น
+        </p>
+
+    </div>
+
+
+    <div class="keyboard-grid">
+
+
+        <!-- KEYBOARD 01 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/3.webp"
+                alt="Keyboard 01"
+            >
+
+            <div class="keyboard-info">
+
+                <span>01 / ZORNHER</span>
+
+                <h3>
+                    Zornher ZH870
+                </h3>
+
+                <p>
+                    
+                    เป็นคีย์บอร์ดเกมมิ่งแมคคานิคอลขนาด 80% (TKL / 87 คีย์)
+                    ที่เน้นดีไซน์ลวดลายศิลปะสวยงามและการพิมพ์ที่นุ่มนวล
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KEYBOARD 02 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/4.jpg"
+                alt="Keyboard 02"
+            >
+
+            <div class="keyboard-info">
+
+                <span>02 / AULA</span>
+
+                <h3>
+                    AULA F75
+                </h3>
+
+                <p>
+                    เป็นคีย์บอร์ดแมคคานิคอล (Mechanical Keyboard) ขนาด 75% จำนวน 80 ปุ่ม
+                    เป็นคีย์บอร์ดแมคคานิคอล (Mechanical Keyboard) ขนาด 75% จำนวน 80 ปุ่ม ที่ได้รับความนิยมสูงเพราะมีโครงสร้างดี
+                    และเสียงพิมพ์นุ่มแน่นในราคาคุ้มค่า
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KEYBOARD 03 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/ajazz-gaming-keyboard-ak870v2-wired-black-red-switch-2.webp"
+                alt="Keyboard 03"
+            >
+
+            <div class="keyboard-info">
+
+                <span>03 / Ajazz</span>
+
+                <h3>
+                    Ajazz AK870 V2
+                </h3>
+
+                <p>
+                    เป็นคีย์บอร์ดเกมมิ่งแมคคานิคอลขนาด 87 คีย์ (TKL)
+                    โครงสร้างแบบ Gasket Mount ที่ให้สัมผัสการพิมพ์นุ่มนวลและเด้งกำลังดี
+                    
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KEYBOARD 04 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/5.5.webp"
+                alt="Keyboard 04"
+            >
+
+            <div class="keyboard-info">
+
+                <span>04 / MONSGEEK</span>
+
+                <h3>
+                    MONSGEEK M1W
+                </h3>
+
+                <p>
+                    เป็นแมคคานิคอลคีย์บอร์ดไร้สายขนาด 75% 82 ปุ่ม
+                    ที่ใช้วัสดุเคสอลูมิเนียมพรีเมียมในราคาคุ้มค่า
+                   
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KEYBOARD 05 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/q1.webp"
+                alt="Keyboard 05"
+            >
+
+            <div class="keyboard-info">
+
+                <span>05 / KEYCHRON</span>
+
+                <h3>
+                    Keychron Q1 Ultra 8K
+                </h3>
+
+                <p>
+                    เป็นคีย์บอร์ดไร้สายระดับพรีเมียมขนาด 75% 
+                    บอดี้โลหะทั้งตัวที่รองรับ Wireless Polling Rate สูงถึง 8000 Hz
+                    
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- KEYBOARD 06 -->
+
+        <div class="keyboard-card">
+
+            <img
+                src="/pic/q1e.webp"
+                alt="Keyboard 06"
+            >
+
+            <div class="keyboard-info">
+
+                <span>06 / WOOTING</span>
+
+                <h3>
+                    WOOTING 60HE v2
+                </h3>
+
+                <p>
+                    คีย์บอร์ดเกมมิ่งขนาด 60% 
+                    สวิตช์แม่เหล็ก Hall-effect
+                    คีย์บอร์ดเกมมิ่งขนาด 60% สวิตช์แม่เหล็ก Hall-effect รุ่นยอดฮิตที่ได้รับการอัปเกรดใหม่
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
+
+    <div class="about-box">
+
+        <div class="section-title">
+
+            <span>03 / ABOUT</span>
+
+        </div>
+
+        <h2>
+            WHY I<br>
+            COLLECT
+        </h2>
+
+        <p>
+            Collection นี้เกิดจากความสนใจใน Keyboard
+            และความชอบในการทดลองสิ่งใหม่ ๆ
+            ตั้งแต่เสียงของ Switch รูปแบบของ Keycap
+            ไปจนถึงการจัดวาง Layout
+            ทุกชิ้นจึงมีความหมายและความรู้สึก
+            ที่แตกต่างกันสำหรับฉัน
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        KEY.COLLECTION
+    </div>
+
+    <div>
+       Sukhathai  © 2026
+    </div>
+
+</footer>
+
+
+</body>
+</html>
